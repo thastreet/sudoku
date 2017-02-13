@@ -20,10 +20,23 @@ public class Main {
     };
 
     public static void main(String[] args) {
-        final Solver solver = new Solver(EASY_GRID_4);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        Bot bot = new Bot();
+
+        final int[][] grid = bot.getGrid(9);
+
+        final Solver solver = new Solver(grid);
+
         final int[][] solution = solver.solve();
 
-        displaySolution(EASY_GRID_4.length, solution);
+        displaySolution(grid.length, solution);
+
+        bot.play(solution);
     }
 
     private static void displaySolution(int gridSize, int[][] solution) {
